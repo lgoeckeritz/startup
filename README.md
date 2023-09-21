@@ -11,7 +11,9 @@ What is the best thing to unite a family? Cooking up a good meal and sharing it 
 ![mockMainPage](mockMainPage.png)
 ![mockSignIn](mockSignIn.png)
 
+
 Here is a diagram that shows how people interact with the backend to see recipes.
+
 
 ![ServerDesign](ServerDesign.png)
 
