@@ -6,3 +6,5 @@ How to ssh into the server
 
   ➜  ssh -i [key pair file] ubuntu@[ip address]
   ➜  ex: ssh -i ~/keys/production.pem ubuntu@53.104.2.123
+
+The domain name for the server is: lizsrecipes.click
