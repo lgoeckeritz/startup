@@ -8,5 +8,7 @@ What is the best thing to unite a family? Cooking up a good meal and sharing it 
 
 ### Design
 
-![mockSignIn](https://github.com/lgoeckeritz/startup/assets/112588957/959df0d2-fe25-4678-bae2-460b3d8cdaba)
-![mockMainPage](https://github.com/lgoeckeritz/startup/assets/112588957/250bda18-c032-4fe5-91ee-f3fbd9a4d676)
+![mockMainPage](mockMainPage.png)
+![mockSignIn](mockSignIn.png)
+Here is a diagram that shows how people interact with the backend to see recipes.
+
