@@ -44,3 +44,14 @@ The required technologies will be implemented in the following ways.
 - **WebSocket** - If new recipes are added to the website, all users will be able to see the new recipe in realtime.
 - **React** - Application ported to use the React web framework.
 
+## HTML deliverable 
+
+For this deliverable, I built out the rough structure of my website using HTML files.
+
+- **HTML pages** - Four HTML pages that represent the ability to login, see all the recipes, see individual recipes, and see an about page (might end up removing the about page)
+- **Links** - All pages link together with the top header, the login page links to the recipes page, and the links on the recipes pages link to a recipe page.
+- **Text** - Each recipe has a name associated with it and inside each recipe, the actual process of it will be listed.
+- **Images** - Images are included of each recipe.
+- **Login** - Input boxes for username and password as well as a login button.
+- **Database** - The recipes represent data pulled from the database.
+- **WebSocket** - The recipes page updates in real-time as people add recipes to the site.
