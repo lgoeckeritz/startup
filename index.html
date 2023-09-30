@@ -1,97 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Tell browsers not to scale the viewport automatically -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liz's Recipes HTML</title>
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body>
+    <!-- Use header, main, and footer elements to give semantic structure -->
+    <header>
+      <h1>Liz's Recipes</h1>
 
-<head>
-  <meta charset="UTF-8" />
-  <!-- Tell browsers not to scale the viewport automatically -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Liz's Recipes HTML</title>
-  <link rel="icon" href="favicon.ico" />
-</head>
+      <!-- Navigation elements -->
+      <nav>
+        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
+        <menu>
+          <li><a href="index.html">Sign In</a></li>
+          <li><a href="recipes.html">All Recipes</a></li>
+          <li><a href="about.html">About</a></li>
+        </menu>
+      </nav>
 
-<body>
-  <!-- Use header, main, and footer elements to give semantic structure -->
-  <header>
-    <h1>Liz's Recipes</h1>
+      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
+      <hr />
+    </header>
 
-    <!-- Navigation elements -->
-    <nav>
-      <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
-      <menu>
-        <li><a href="index.html">Sign In</a></li>
-        <li><a href="recipes.html">All Recipes</a></li>
-        <li><a href="about.html">About</a></li>
-      </menu>
-    </nav>
+    <main>
+      <h1>Login</h1>
+      <form method="get" action="recipes.html">
+        <li>
+        <label for="email">Username:</label>
+        <input type="text" id="username" name="varUsername" placeholder="Enter your username" />
+      </li>
+      <li>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="varPassword" placeholder="Enter your password" />
+      </li>
+        <button type="submit">Login</button>
+      </form>
+    </main>
 
-    <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
-    <hr />
-  </header>
-
-  <main>
-    <h1>Recipes</h1>
-    <table>
-      <tr>
-        <th><a href="recipes.html">Entres</a></th>
-        <th><a href="recipes.html">Desserts</a></th>
-        <th><a href="recipes.html">Sides</a></th>
-        <th><a href="recipes.html">Drinks</a></th>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <th>
-          <button>
-            <div id="picture1" class="picture-box"><img width="200px" src="placeholder.png" alt="tempFood" /></div>
-          </button>
-        </th>
-        <th>
-          <button>
-            <div id="picture2" class="picture-box"><img width="200px" src="placeholder.png" alt="tempFood" /></div>
-          </button>
-        </th>
-        <th>
-          <button>
-            <div id="picture3" class="picture-box"><img width="200px" src="placeholder.png" alt="tempFood" /></div>
-          </button>
-        </th>
-        <th>
-          <button>
-            <div id="picture4" class="picture-box"><img width="200px" src="placeholder.png" alt="tempFood" /></div>
-          </button>
-        </th>
-      </tr>
-      <tr>
-        <th>
-          <button>
-            <div id="picture5" class="picture-box"><img width="200px" src="placeholder.png" alt="tempFood" /></div>
-          </button>
-        </th>
-        <th>
-          <button>
-            <div id="picture6" class="picture-box"><img width="200px" src="placeholder.png" alt="tempFood" /></div>
-          </button>
-        </th>
-        <th>
-          <button>
-            <div id="picture7" class="picture-box"><img width="200px" src="placeholder.png" alt="tempFood" /></div>
-          </button>
-        </th>
-        <th>
-          <button>
-            <div id="picture8" class="picture-box"><img width="200px" src="placeholder.png" alt="tempFood" /></div>
-          </button>
-        </th>
-      </tr>
-    </table>
-  </main>
-
-  <footer>
-    <hr />
-    <span class="text-reset">Author Name</span>
-    <br />
-    <a href="https://github.com/lgoeckeritz/startup">GitHub</a>
-  </footer>
-</body>
-
+    <footer>
+      <hr />
+      <span class="text-reset">Author Name</span>
+      <br />
+      <a href="https://github.com/lgoeckeritz/startup">GitHub</a>
+    </footer>
+  </body>
 </html>
