@@ -1,50 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Liz's Recipes HTML</title>
-  </head>
-  <body>
-    <!-- Use header, main, and footer elements to give semantic structure -->
-    <header>
-      <h1>Liz's Recipes</h1>
 
-      <!-- Navigation elements -->
-      <nav>
-        <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
-        <menu>
-          <li><a href="index.html">Sign In</a></li>
-          <li><a href="recipes.html">All Recipes</a></li>
-          <li><a href="about.html">About</a></li>
-        </menu>
-      </nav>
+<head>
+  <meta charset="UTF-8" />
+  <!-- Tell browsers not to scale the viewport automatically -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liz's Recipes HTML</title>
+  <link rel="stylesheet" href="index.css" />
 
-      <!-- Since we don't have the ability to style we use old style HTML to give some visual formatting -->
-      <hr />
-    </header>
+</head>
 
-    <main>
-      <h1>Login</h1>
-      <form method="get" action="recipes.html">
-        <li>
-        <label for="email">Username:</label>
-        <input type="text" id="username" name="varUsername" placeholder="Enter your username" />
-      </li>
-      <li>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="varPassword" placeholder="Enter your password" />
-      </li>
-        <button type="submit">Login</button>
+<body>
+  <header>
+    <h1>Liz's Recipes</h1>
+  </header>
+
+  <main>
+    <div class="form">
+      <form class="register-form">
+        <input type="text" placeholder="name" />
+        <input type="password" placeholder="password" />
+        <input type="text" placeholder="email address" />
+        <button>create</button>
+        <p class="message">Already registered? <a href="#">Sign In</a></p>
       </form>
-    </main>
+      <form class="login-form" method="get" action="recipes.html">
+        <input type="text" placeholder="username" />
+        <input type="password" placeholder="password" />
+        <button>login</button>
+        <p class="message">Not registered? <a href="#">Create an account</a></p>
+      </form>
+    </div>
+  </main>
+</body>
 
-    <footer>
-      <hr />
-      <span class="text-reset">Author Name</span>
-      <br />
-      <a href="https://github.com/lgoeckeritz/startup">GitHub</a>
-    </footer>
-  </body>
 </html>
