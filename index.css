@@ -13,7 +13,7 @@ header {
   flex-direction: row;
   display: flex;
   flex: 0 50px;
-  padding-left: 1em;
+  text-align: center;
 }
 
 body {
