@@ -60,7 +60,7 @@ For this deliverable, I built out the rough structure of my website using HTML f
 
 For this deliverable, I styled the website using CSS to what its final appearance should look like.
 
-- **Header, footer, and main content body**
+- **Header, footer, and main content body** - Each was formated to work with and match each other.
 - **Navigation elements** - I made sure that all navigational elements were functional and styled to match the website.
 - **Responsive to window resizing** - I made sure the website looked good, no matter how it was resized
 - **Application elements** - Kept a standard theme and spacing throughout. 
