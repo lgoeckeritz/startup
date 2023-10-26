@@ -6,6 +6,8 @@
   <!-- Tell browsers not to scale the viewport automatically -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Liz's Recipes HTML</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="index.js"></script>
   <link rel="stylesheet" href="index.css" />
 
 </head>
@@ -18,17 +20,17 @@
   <main>
     <div class="form">
       <form class="register-form">
-        <input type="text" placeholder="name" />
-        <input type="password" placeholder="password" />
-        <input type="text" placeholder="email address" />
-        <button>create</button>
-        <p class="message">Already registered? <a href="#">Sign In</a></p>
+        <input type="text" id="reg_name" placeholder="name" />
+        <input type="password" id="reg_password" placeholder="password" />
+        <input type="text" id="reg_email" placeholder="email address" />
+        <button class="btn btn-primary" type="reset" onclick="register()">create</button>
+        <p class="message">Already registered? <a href="#" onclick="myAnimate()">Sign In</a></p>
       </form>
-      <form class="login-form" method="get" action="recipes.html">
-        <input type="text" placeholder="username" />
-        <input type="password" placeholder="password" />
-        <button>login</button>
-        <p class="message">Not registered? <a href="#">Create an account</a></p>
+      <form class="login-form">
+        <input type="text" id="name" placeholder="username" />
+        <input type="password" id="password" placeholder="password" />
+        <button class="btn btn-primary" type="reset" onclick="login()">login</button>
+        <p class="message">Not registered? <a href="#" onclick="myAnimate()">Create an account</a></p>
       </form>
     </div>
   </main>
