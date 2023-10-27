@@ -36,15 +36,14 @@ h1 {
   text-align: center;
 }
 
-tr,
 table {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+  width: 100%; /* Use 100% width to fill the container */
+  border-collapse: collapse;
 }
 
-th {
-  padding: 1em;
+th, td {
+  padding: 10px;
+  text-align: left;
 }
 
 h4 {

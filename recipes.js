@@ -56,6 +56,9 @@ class MainPage {
         for (let i = 0; i < 3; i++) {
             let arrayIndex = this.currPage * 3 + i;
 
+            const articleId = "article" + i;
+            const article = document.getElementById(articleId);
+
             if (arrayIndex < this.recipeList.length) {
                 const titleId = "title" + i;
                 const authorId = "author" + i;
@@ -64,11 +67,14 @@ class MainPage {
                 document.getElementById(titleId).textContent = this.recipeList[i].title;
                 document.getElementById(authorId).textContent = this.recipeList[i].author;
                 document.getElementById(timeId).textContent = this.recipeList[i].cookTime;
+
+                article.addEventListener('click', () => {
+                    localStorage.setItem('clickedCardIndex', arrayIndex);
+                });
+
             } 
             else {
                 // Hide the card using the article ID
-                const articleId = "article" + i;
-                const article = document.getElementById(articleId);
                 article.style.display = 'none';
             }
 
