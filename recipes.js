@@ -16,7 +16,7 @@ class MainPage {
             "My Favorite Fudge Brownie Mix",
             "Liz Goeckeritz",
             "Makes one sheet of brownies",
-            "15",
+            "15 min",
             ["Betty Crocker Fudge Brownie Mix", 
             "1/4 Cup Water", 
             "1/3 Cup Vegetable Oil", 

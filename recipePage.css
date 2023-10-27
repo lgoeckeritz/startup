@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
 
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: "Roboto Slab", serif;
 }
 
 .main-content {
@@ -13,7 +13,7 @@ body {
 .recipe {
   flex: 2; /* Takes up 3/4 of the available space */
   padding: 20px; /* Add padding for spacing */
-  background-color: #f9f9f9; /* Add background color for clarity */
+  background-color: #f9f9f9; 
   overflow-y: auto; /* Add scroll if the content exceeds the container height */
 }
 
