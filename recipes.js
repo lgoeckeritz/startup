@@ -8,11 +8,13 @@ class MainPage {
         this.userName = localStorage.getItem('userName') ?? 'Guest User';
         this.currPage = 0;
 
-        this.setRecipeList()
+        localStorage.clear();
+        this.setRecipeList();
 
         //setting the first value of recipeList to a dummy value
         const myRecipe = new Recipe(
             "My Favorite Fudge Brownie Mix",
+            "Makes one sheet of brownies",
             "Liz Goeckeritz",
             "15",
             ["Betty Crocker Fudge Brownie Mix", 
@@ -26,6 +28,7 @@ class MainPage {
         );
         
         this.recipeList[0] = myRecipe;
+
         localStorage.setItem('recipeList', JSON.stringify(this.recipeList));
 
         //setting up the recipe cards
@@ -52,8 +55,15 @@ class MainPage {
 
         for (let i = 0; i < 3; i++) {
             let arrayIndex = this.currPage * 3 + i;
-            if (arrayIndex < this.recipeList.length) {
 
+            if (arrayIndex < this.recipeList.length) {
+                const titleId = "title" + i;
+                const authorId = "author" + i;
+                const timeId = "time" + i;
+
+                document.getElementById(titleId).textContent = this.recipeList[i].title;
+                document.getElementById(authorId).textContent = this.recipeList[i].author;
+                document.getElementById(timeId).textContent = this.recipeList[i].cookTime;
             } 
             else {
                 // Hide the card using the article ID
@@ -72,8 +82,9 @@ class MainPage {
 
 class Recipe {
 
-    constructor(title, author, cookTime, ingredients, instructions, picture) {
+    constructor(title, author, servingSize, cookTime, ingredients, instructions, picture) {
         this.title = title || "";
+        this.servingSize = servingSize || "";
         this.author = author || "";
         this.cookTime = cookTime || "";
         this.ingredients = ingredients || [];
