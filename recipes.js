@@ -8,14 +8,14 @@ class MainPage {
         this.userName = localStorage.getItem('userName') ?? 'Guest User';
         this.currPage = 0;
 
-        localStorage.clear();
+        //localStorage.clear();
         this.setRecipeList();
 
         //setting the first value of recipeList to a dummy value
         const myRecipe = new Recipe(
             "My Favorite Fudge Brownie Mix",
-            "Makes one sheet of brownies",
             "Liz Goeckeritz",
+            "Makes one sheet of brownies",
             "15",
             ["Betty Crocker Fudge Brownie Mix", 
             "1/4 Cup Water", 

@@ -9,33 +9,39 @@
 </head>
 <body>
     <div class="recipe-form">
-        <h2>Upload Your Recipe</h2>
-        <form id="recipe-form">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required>
-
-            <label for="serving-size">Serving Size:</label>
-            <input type="text" id="serving-size" name="serving-size" required>
-
-            <div class="ingredients">
-                <label>Ingredients:</label>
-                <div class="ingredient-row">
-                    <input type="text" class="ingredient" name="ingredients[]" required>
-                    <button type="button" class="add-ingredient">Add Ingredient</button>
-                </div>
-            </div>
-
-            <div class="instructions">
-                <label>Instructions:</label>
-                <div class="instruction-row">
-                    <textarea class="instruction" name="instructions[]" required></textarea>
-                    <button type="button" class="add-instruction">Add Instruction</button>
-                </div>
-            </div>
-
-            <button type="submit">Upload Recipe</button>
-        </form>
+      <h2>Upload Your Recipe</h2>
+      <form id="recipe-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+  
+        <label for="serving-size">Serving Size:</label>
+        <input type="text" id="serving-size" name="serving-size" required>
+  
+        <label for="cook-time">Cook Time:</label>
+        <input type="text" id="cook-time" name="cook-time" required>
+  
+        <div class="ingredients">
+          <label>Ingredients:</label>
+          <div class="ingredient-row">
+            <input type="text" class="ingredient" name="ingredients[]" required>
+            <button type="button" class="add-ingredient">Add Ingredient</button>
+          </div>
+        </div>
+  
+        <div class="instructions">
+          <label>Instructions:</label>
+          <div class="instruction-row">
+            <textarea class="instruction" name="instructions[]" required></textarea>
+            <button type="button" class="add-instruction">Add Instruction</button>
+          </div>
+        </div>
+  
+        <div class="button-container">
+          <button type="button" id="cancel-button">Cancel</button>
+          <button type="submit" id="submit-button">Submit</button>
+        </div>
+      </form>
     </div>
-    <script src="script.js"></script>
-</body>
-</html>
+  </body>
+  
+  </html>

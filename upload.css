@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Roboto", sans-serif;
     background-color: #f2f2f2;
     margin: 0;
     padding: 0;
@@ -30,14 +30,14 @@ label {
 input[type="text"],
 textarea {
     width: 100%;
-    padding: 10px;
+    padding-bottom: 10px;
+    padding-top: 10dp;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-button[type="submit"] {
-    margin-top: 20px;
+button {
     background-color: #0074d9;
     color: #fff;
     border: none;
@@ -45,6 +45,54 @@ button[type="submit"] {
     padding: 10px;
     cursor: pointer;
     font-weight: bold;
+}
+
+/* Style for Submit button */
+#submit-button {
+  margin-top: 20px;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #b76e79;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: white;
+  border: 2px solid #b76e79;
+  font-size: 15px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+#submit-button:hover,.form button:active,.form button:focus {
+  background: white;
+  color: #b76e79;
+}
+
+/* Style for Cancel button */
+#cancel-button {
+  margin-top: 20px;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: white;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #c23b22;
+  border: 2px solid #c23b22;
+  font-size: 15px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+#cancel-button:hover,.form button:active,.form button:focus {
+  background: #c23b22;
+  color: white;
 }
 
 .ingredients,
@@ -55,7 +103,7 @@ button[type="submit"] {
 .ingredient-row,
 .instruction-row {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .add-ingredient,
@@ -71,6 +119,7 @@ button[type="submit"] {
 }
 
 .remove-button {
+    margin-top: 5px;
     background-color: #FF5733;
     color: #fff;
     border: none;
@@ -78,4 +127,10 @@ button[type="submit"] {
     padding: 10px 15px;
     cursor: pointer;
     font-weight: bold;
+    margin-left: 10px;
+}
+
+.button-container {
+  display: flex;
+  flex: row;
 }
