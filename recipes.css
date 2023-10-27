@@ -124,7 +124,7 @@ body {
   top: 0;
 }
 
-  .card {
+.card {
   margin-right: 10px;
   margin-left: 10px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
@@ -191,17 +191,20 @@ body {
 }
 
 .botton-container {
-  display: flex;
   justify-content: center;
+  display: flex;
   margin-top: 20px;
   gap: 20px;
 }
+
 
  .create-recipe {
   display: flex;
   justify-content: center;
   margin-top: 20px;
   gap: 20px;
+  padding-left: 20px;
+
 } 
 
 .recipe-row {
@@ -265,5 +268,7 @@ button:hover,
   .botton-container {
     margin-top: 0px;
     padding-bottom: 1em;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }

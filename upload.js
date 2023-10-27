@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // You can redirect to another page or display a success message here
         alert("Recipe uploaded successfully!");
         // Optionally, redirect to another page
-        window.location.href = "index.html"; // Redirect to the home page
+        window.location.href = "recipes.html"; // Redirect to the home page
 
         // Clear the form
         form.reset();

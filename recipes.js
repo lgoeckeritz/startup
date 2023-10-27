@@ -6,7 +6,7 @@ class MainPage {
     constructor() {
         this.recipeList = [];
         this.userName = localStorage.getItem('userName') ?? 'Guest User';
-        this.currPage = 0;
+        this.currPage = localStorage.getItem('currPage') ? parseInt(localStorage.getItem('currPage')) : 0; // Retrieve currPage from localStorage
 
         //localStorage.clear();
         this.setRecipeList();
@@ -60,13 +60,16 @@ class MainPage {
             const article = document.getElementById(articleId);
 
             if (arrayIndex < this.recipeList.length) {
+
+                article.style.display = 'block';
+
                 const titleId = "title" + i;
                 const authorId = "author" + i;
                 const timeId = "time" + i;
 
-                document.getElementById(titleId).textContent = this.recipeList[i].title;
-                document.getElementById(authorId).textContent = this.recipeList[i].author;
-                document.getElementById(timeId).textContent = this.recipeList[i].cookTime;
+                document.getElementById(titleId).textContent = this.recipeList[arrayIndex].title;
+                document.getElementById(authorId).textContent = this.recipeList[arrayIndex].author;
+                document.getElementById(timeId).textContent = this.recipeList[arrayIndex].cookTime;
 
                 article.addEventListener('click', () => {
                     localStorage.setItem('clickedCardIndex', arrayIndex);
@@ -82,6 +85,25 @@ class MainPage {
 
 
 
+    }
+
+     // Function to handle "Prev" button click
+     handlePrevButtonClick() {
+        if (this.currPage > 0) {
+            this.currPage--;
+            localStorage.setItem('currPage', this.currPage);
+            this.setRecipeCards();
+        }
+    }
+
+    // Function to handle "Next" button click
+    handleNextButtonClick() {
+        const maxPage = Math.floor((this.recipeList.length - 1) / 3);
+        if (this.currPage < maxPage) {
+            this.currPage++;
+            localStorage.setItem('currPage', this.currPage);
+            this.setRecipeCards();
+        }
     }
 }
 
@@ -101,4 +123,17 @@ class Recipe {
 
 window.onload = function() {
     const mainPage = new MainPage();
+
+    // Get references to the "Prev" and "Next" buttons
+    const prevButton = document.querySelector('button[type="button"][id="prev-button"]');
+    const nextButton = document.querySelector('button[type="button"][id="next-button"]');
+
+    // Add event listeners for the buttons
+    prevButton.addEventListener('click', () => {
+        mainPage.handlePrevButtonClick();
+    });
+
+    nextButton.addEventListener('click', () => {
+        mainPage.handleNextButtonClick();
+    });
 }
