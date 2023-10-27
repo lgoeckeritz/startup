@@ -61,7 +61,8 @@ class MainPage {
 
             if (arrayIndex < this.recipeList.length) {
 
-                article.style.display = 'block';
+                //article.style.display = 'block';
+                article.hidden = false;
 
                 const titleId = "title" + i;
                 const authorId = "author" + i;
@@ -78,7 +79,8 @@ class MainPage {
             } 
             else {
                 // Hide the card using the article ID
-                article.style.display = 'none';
+                //article.style.display = 'none';
+                article.hidden = true;
             }
 
         }
