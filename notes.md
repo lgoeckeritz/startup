@@ -1,6 +1,12 @@
+## Server Notes:
+  + To ssh into my server: `ssh -i [key pair file] ubuntu@[ip address]` and to exit I `exit`
+  + To deploy something to my server: `./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon`
+  + IP address of server: 34.206.34.136
+
 # Notes for Midterm
 
 ### References to other helpful notes
+- [MarkDown syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#relative-links)
 - [The Console](https://github.com/webprogramming260/.github/blob/main/profile/essentials/console/console.md)
 - [HTTPS, TLS, and web certificates](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md)
 
@@ -29,13 +35,6 @@
 - [Document Object Model](https://github.com/webprogramming260/.github/blob/main/profile/javascript/dom/dom.md)
 - [Promises](https://github.com/webprogramming260/.github/blob/main/profile/javascript/promises/promises.md)
 - [JavaScript Async/await](https://github.com/webprogramming260/.github/blob/main/profile/javascript/asyncAwait/asyncAwait.md)
-
-## Markdown notes
-  + [MarkDown syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#relative-links)
-  + To ssh into my server I do this `ssh -i [key pair file] ubuntu@[ip address]` and to exit I `exit`
-  + To deploy something to my server I run the following within it's folder `./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon`
-  + IP address of server: 34.206.34.136
-  + To add an image `<img alt="mountain landscape" src="https://images.pexels.com/photos/164170/pexels-photo-164170.jpeg" />` the alt is the text that will display if the image doesn't load
 
 # The Console
 ## Executing commands
