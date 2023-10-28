@@ -1,15 +1,16 @@
 # Notes from Midterm
 
-## References to other helpful notes
+### References to other helpful notes
+- [The Console](https://github.com/webprogramming260/.github/blob/main/profile/essentials/console/console.md)
 - [HTTPS, TLS, and web certificates](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md)
 
-#HTML
+### HTML
 - [Hypertext Markup Language](https://github.com/webprogramming260/.github/blob/main/profile/html/introduction/introduction.md)
 - [HTML structure elements](https://github.com/webprogramming260/.github/blob/main/profile/html/structure/structure.md)
 - [HTML input elements](https://github.com/webprogramming260/.github/blob/main/profile/html/input/input.md)
 - [HTML media elements](https://github.com/webprogramming260/.github/blob/main/profile/html/media/media.md)
   
-#CSS
+### CSS
 - [Cascading Style Sheets](https://github.com/webprogramming260/.github/blob/main/profile/css/introduction/introduction.md)
 - [CSS Selectors](https://github.com/webprogramming260/.github/blob/main/profile/css/selectors/selectors.md)
 - [CSS Declarations](https://github.com/webprogramming260/.github/blob/main/profile/css/declarations/declarations.md)
@@ -18,7 +19,16 @@
 - [Responsive design](https://github.com/webprogramming260/.github/blob/main/profile/css/responsive/responsive.md)
 - [Grid](https://github.com/webprogramming260/.github/blob/main/profile/css/grid/grid.md)
 - [CSS flex](https://github.com/webprogramming260/.github/blob/main/profile/css/flexbox/flexbox.md)
-- 
+
+### JavaScript
+- [JavaScript arrow function](https://github.com/webprogramming260/.github/blob/main/profile/javascript/arrow/arrow.md)
+- [JavaScript array](https://github.com/webprogramming260/.github/blob/main/profile/javascript/array/array.md)
+- [JavaScript rest and spread](https://github.com/webprogramming260/.github/blob/main/profile/javascript/restSpread/restSpread.md)
+- [JavaScript destructuring](https://github.com/webprogramming260/.github/blob/main/profile/javascript/destructuring/destructuring.md)
+- [JavaScript object and classes](https://github.com/webprogramming260/.github/blob/main/profile/javascript/objectClasses/objectClasses.md)
+- [Document Object Model](https://github.com/webprogramming260/.github/blob/main/profile/javascript/dom/dom.md)
+- [Promises](https://github.com/webprogramming260/.github/blob/main/profile/javascript/promises/promises.md)
+- [JavaScript Async/await](https://github.com/webprogramming260/.github/blob/main/profile/javascript/asyncAwait/asyncAwait.md)
 
 ## Markdown notes
   + [MarkDown syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#relative-links)
