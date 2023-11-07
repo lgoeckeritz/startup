@@ -67,7 +67,14 @@ For this deliverable, I styled the website using CSS to what its final appearanc
 - **Application text content** - Same or similar fonts throughout the website. 
 - **Application images** - Made sure images were ordered properly and wouldn't expand beyond what they should.
 
+## JavaScript deliverable
 
+For this deliverable, I implemented JavaScript so that the application works by storing data in localStorage, so it only persists on local browsers.
+
+- **login** - When you enter your information for login or register, it saves the data and directs the user to the main page.
+- **database** - The main page displays recipes that the user has uploaded. For now, this data is stored in localStorage but will be pulled from a database in the future. Each recipe also has a preset picture as I wasn't sure how to have users upload and save photos without using a database.
+- **WebSocket** - For now, the only recipes that are available to see are, the default just to show what one will look like, and whatever the user has created. Eventually, it will open up to showing recipes uploaded by anyone with access to the website.
+- **application logic** - Each section pulls information from another. recipePage.html pulls data from the recipe that was clicked on from recipes.html. The next and prev buttons go through and show all the recipes stored in localStorage, three at a time, making sure that if the end of the list is reached the next button will not function and vice versa for the prev button.
 
 
 
