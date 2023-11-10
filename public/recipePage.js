@@ -1,9 +1,24 @@
 window.onload = function() {
+    loadRecipes();
+};
+
+async function loadRecipes() {
+    // getting the latest recipes from the service
+    let recipeList = [];
+    try {
+        const response = await fetch('/api/recipes');
+        recipeList = await response.json();
+
+        // Save the recipes in case we go offline in the future
+        localStorage.setItem('recipeList', JSON.stringify(recipeList));
+    } catch {
+        // If there was an arror then just use the last saved recipes
+        // Retrieve the recipeList from localStorage
+        recipeList = JSON.parse(localStorage.getItem('recipeList'));
+    }
+
     // Retrieve the index of the clicked card from localStorage
     const clickedCardIndex = localStorage.getItem('clickedCardIndex');
-
-    // Retrieve the recipeList from localStorage
-    const recipeList = JSON.parse(localStorage.getItem('recipeList'));
 
     // Check if the clickedCardIndex is valid and recipeList exists
     if (clickedCardIndex !== null && Array.isArray(recipeList)) {
@@ -42,4 +57,4 @@ window.onload = function() {
             imageElement.src = recipe.picture;
         }
     }
-};
+}

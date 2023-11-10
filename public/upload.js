@@ -76,14 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create a Recipe object
         const newRecipe = new Recipe(title, author, servingSize, cookTime, ingredients, instructions, null);
 
-        // Get existing recipes from localStorage or create an empty array
-        const recipeList = JSON.parse(localStorage.getItem("recipeList")) || [];
-
-        // Add the new recipe to the array
-        recipeList.push(newRecipe);
-
-        // Save the updated recipeList back to localStorage
-        localStorage.setItem("recipeList", JSON.stringify(recipeList));
+        saveRecipe(newRecipe);
 
         // You can redirect to another page or display a success message here
         alert("Recipe uploaded successfully!");
@@ -96,6 +89,30 @@ document.addEventListener("DOMContentLoaded", function () {
         instructions.innerHTML = ''; // Clear added instruction rows
     });
 });
+
+async function saveRecipe(newRecipe) {
+    try {
+        const response = await fetch('/api/recipe', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(newRecipe),
+          });
+        
+        // Store what the service gave as recipeList
+        const recipeList = await response.json();
+
+        localStorage.setItem('recipeList', JSON.stringify(recipeList));
+    } catch {
+        // Get existing recipes from localStorage or create an empty array
+        const recipeList = JSON.parse(localStorage.getItem("recipeList")) || [];
+
+        // Add the new recipe to the array
+        recipeList.push(newRecipe);
+
+        // Save the updated recipeList back to localStorage
+        localStorage.setItem("recipeList", JSON.stringify(recipeList));
+    }
+}
 
 class Recipe {
 

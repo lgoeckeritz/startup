@@ -8,47 +8,51 @@ class MainPage {
         this.userName = localStorage.getItem('userName') ?? 'Guest User';
         this.currPage = localStorage.getItem('currPage') ? parseInt(localStorage.getItem('currPage')) : 0; // Retrieve currPage from localStorage
 
-        //localStorage.clear();
-        this.setRecipeList();
+        this.loadRecipes();
 
-        //setting the first value of recipeList to a dummy value
-        const myRecipe = new Recipe(
-            "My Favorite Fudge Brownie Mix",
-            "Liz Goeckeritz",
-            "Makes one sheet of brownies",
-            "15 min",
-            ["Betty Crocker Fudge Brownie Mix", 
-            "1/4 Cup Water", 
-            "1/3 Cup Vegetable Oil", 
-            "1 Egg"],
-            ["Heat oven to 350F for shiny metal pan or 325F for nonstick or glass pan. Grease bottom of pan.",
-            "Stir Brownie Mix, water, oil, and egg in a medium bowl until well blended. Spread in the pan.",
-            "In an 11\" x 7\" pan, bake for 27-30 minutes."],
-            null
-        );
+        // //setting the first value of recipeList to a dummy value
+        // const myRecipe = new Recipe(
+        //     "My Favorite Fudge Brownie Mix",
+        //     "Liz Goeckeritz",
+        //     "Makes one sheet of brownies",
+        //     "15 min",
+        //     ["Betty Crocker Fudge Brownie Mix", 
+        //     "1/4 Cup Water", 
+        //     "1/3 Cup Vegetable Oil", 
+        //     "1 Egg"],
+        //     ["Heat oven to 350F for shiny metal pan or 325F for nonstick or glass pan. Grease bottom of pan.",
+        //     "Stir Brownie Mix, water, oil, and egg in a medium bowl until well blended. Spread in the pan.",
+        //     "In an 11\" x 7\" pan, bake for 27-30 minutes."],
+        //     null
+        // );
         
-        this.recipeList[0] = myRecipe;
+        // this.recipeList[0] = myRecipe;
 
-        localStorage.setItem('recipeList', JSON.stringify(this.recipeList));
+        // localStorage.setItem('recipeList', JSON.stringify(this.recipeList));
 
         //setting up the recipe cards
-        this.setRecipeCards();
+        //this.setRecipeCards();
 
     }
 
-    setRecipeList() {
-        // Check if there's data in localStorage
-        const localStorageRecipeList = localStorage.getItem('recipeList');
-
-        // If data exists, parse it and assign it to recipeList
-        if (localStorageRecipeList) {
-            try {
-                this.recipeList = JSON.parse(localStorageRecipeList);
-            } catch (error) {
-                // Handle parsing error if needed
-                console.error("Error parsing recipe list from localStorage:", error);
-            }
+    async loadRecipes() {
+        // getting the latest recipes from the service
+        this.recipeList = [];
+        try {
+            const response = await fetch('/api/recipes');
+            this.recipeList = await response.json();
+            // need to parse it into an array of recipe objects not json objects
+            // recipeList = JSON.parse(recipeList);
+    
+            // Save the recipes in case we go offline in the future
+            localStorage.setItem('recipeList', JSON.stringify(recipeList));
+        } catch {
+            // If there was an arror then just use the last saved recipes
+            // Retrieve the recipeList from localStorage
+            this.recipeList = JSON.parse(localStorage.getItem('recipeList'));
         }
+    
+        this.setRecipeCards();
     }
 
     setRecipeCards() {
@@ -79,7 +83,6 @@ class MainPage {
             } 
             else {
                 // Hide the card using the article ID
-                //article.style.display = 'none';
                 article.hidden = true;
             }
 
