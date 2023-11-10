@@ -4,35 +4,24 @@ class MainPage {
     currPage;
 
     constructor() {
-        this.recipeList = [];
-        this.userName = localStorage.getItem('userName') ?? 'Guest User';
+        this.userName = localStorage.getItem('userName');
+        if (this.userName == "") {
+            this.getRandomUser();
+        }
         this.currPage = localStorage.getItem('currPage') ? parseInt(localStorage.getItem('currPage')) : 0; // Retrieve currPage from localStorage
 
         this.loadRecipes();
+    }
 
-        // //setting the first value of recipeList to a dummy value
-        // const myRecipe = new Recipe(
-        //     "My Favorite Fudge Brownie Mix",
-        //     "Liz Goeckeritz",
-        //     "Makes one sheet of brownies",
-        //     "15 min",
-        //     ["Betty Crocker Fudge Brownie Mix", 
-        //     "1/4 Cup Water", 
-        //     "1/3 Cup Vegetable Oil", 
-        //     "1 Egg"],
-        //     ["Heat oven to 350F for shiny metal pan or 325F for nonstick or glass pan. Grease bottom of pan.",
-        //     "Stir Brownie Mix, water, oil, and egg in a medium bowl until well blended. Spread in the pan.",
-        //     "In an 11\" x 7\" pan, bake for 27-30 minutes."],
-        //     null
-        // );
-        
-        // this.recipeList[0] = myRecipe;
-
-        // localStorage.setItem('recipeList', JSON.stringify(this.recipeList));
-
-        //setting up the recipe cards
-        //this.setRecipeCards();
-
+    getRandomUser() {
+        fetch('https://randomuser.me/api/')
+            .then((response) => response.json())
+            .then((data) => {
+                const user = data.results[0];
+                const fullName = `${user.name.title} ${user.name.first} ${user.name.last}`;
+                this.userName = fullName;
+                localStorage.setItem('userName', fullName);
+            });
     }
 
     async loadRecipes() {
