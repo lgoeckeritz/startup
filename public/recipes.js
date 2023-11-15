@@ -30,8 +30,6 @@ class MainPage {
         try {
             const response = await fetch('/api/recipes');
             this.recipeList = await response.json();
-            // need to parse it into an array of recipe objects not json objects
-            // recipeList = JSON.parse(recipeList);
     
             // Save the recipes in case we go offline in the future
             localStorage.setItem('recipeList', JSON.stringify(recipeList));
