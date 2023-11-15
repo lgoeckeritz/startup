@@ -76,7 +76,15 @@ For this deliverable, I implemented JavaScript so that the application works by 
 - **WebSocket** - For now, the only recipes that are available to see are, the default just to show what one will look like, and whatever the user has created. Eventually, it will open up to showing recipes uploaded by anyone with access to the website.
 - **application logic** - Each section pulls information from another. recipePage.html pulls data from the recipe that was clicked on from recipes.html. The next and prev buttons go through and show all the recipes stored in localStorage, three at a time, making sure that if the end of the list is reached the next button will not function and vice versa for the prev button.
 
+## Service deliverable
 
+For this deliverable, I added backend endpoints that receive and return recipes.
+
+- **Node.js/Express HTTP service** - done!
+- **Static middleware for frontend** - done!
+- **Calls to third party endpoints** - If someone logs in without a username a call will be made to [randomuser.me/api](https://randomuser.me/api/) to provide a random name for the mystery user.
+- **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints for recipes.
+- **Frontend calls service endpoints** - I did this using the fetch function. 
 
 
 
