@@ -46,6 +46,13 @@ async function register() {
   const username = document.querySelector("#reg_name")?.value;
   const password = document.querySelector("#reg_password")?.value;
   const email = document.querySelector("#reg_email")?.value;
+
+  if (username == "" || password == "" || email == "") {
+    alert(`⚠ Error: One or multiple fields are empty`);
+    return;
+  }
+
+
   const response = await fetch('/api/auth/create', {
     method: 'post',
     body: JSON.stringify({username: username, email: email, password: password}),
