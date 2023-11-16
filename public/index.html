@@ -18,21 +18,29 @@
   </header>
 
   <main>
-    <div class="form">
-      <form class="register-form">
-        <input type="text" id="reg_name" placeholder="name" />
+    <!-- Display when needing authentication -->
+    <div id="login/register" class="form" style="display: none">
+      <form class="register-form" id="register">
+        <input type="text" id="reg_name" placeholder="username" />
         <input type="password" id="reg_password" placeholder="password" />
         <input type="text" id="reg_email" placeholder="email address" />
         <button class="btn btn-primary" type="reset" onclick="register()">create</button>
         <p class="message">Already registered? <a href="#" onclick="myAnimate()">Sign In</a></p>
       </form>
-      <form class="login-form">
+      <form class="login-form" id="login">
         <input type="text" id="name" placeholder="username" />
         <input type="password" id="password" placeholder="password" />
         <button class="btn btn-primary" type="reset" onclick="login()">login</button>
         <p class="message">Not registered? <a href="#" onclick="myAnimate()">Create an account</a></p>
       </form>
     </div>
+    <form class="form" id="continue-form" style="display: none">
+      <div class="continueControls">
+        <div id="userName"></div>
+        <button id="continueButton" style="margin-bottom: 1em;" type="reset" class="btn btn-primary" onclick="continueLogin()">Continue</button>
+        <button id="logoutButton" type="reset" class="btn btn-secondary" onclick="logout()">Logout</button>
+      </div>
+    </form>
   </main>
 </body>
 

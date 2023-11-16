@@ -18,20 +18,20 @@ const recipeCollection = db.collection('recipes');
   process.exit(1);
 });
 
-function getUser(email) {
-  return userCollection.findOne({ email: email });
+function getUser(username) {
+  return userCollection.findOne({ username: username });
 }
 
 function getUserByToken(token) {
   return userCollection.findOne({ token: token });
 }
 
-async function createUser(name, email, password) {
+async function createUser(username, email, password) {
   // Hash the password before we insert it into the database
   const passwordHash = await bcrypt.hash(password, 10);
 
   const user = {
-    name: name,
+    username: username,
     email: email,
     password: passwordHash,
     token: uuid.v4(),

@@ -122,3 +122,13 @@ main {
 .container .info span .fa {
   color: #EF3B3A;
 }
+
+#userName {
+  font-family: "Roboto", sans-serif;
+  padding: 15px;
+  font-size: 25px;
+  color: #b76e79;
+  margin-bottom: .5em;
+} 
+
+

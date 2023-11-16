@@ -1,39 +1,99 @@
-function login() {
-    const nameEl = document.querySelector("#name");
-    const passwordEl = document.querySelector("#password")
-    localStorage.setItem("userName", nameEl.value);
-    localStorage.setItem("userPassword", passwordEl.value);
-    window.location.href = "recipes.html";
+window.onload = async function() {
+  const userName = localStorage.getItem('userName');
+  if (userName) {
+    document.getElementById('userName').textContent = userName;
+    setDisplay('login/register', 'none');
+    setDisplay('continue-form', 'block');
+  } else {
+    setDisplay('login/register', 'block');
+    setDisplay('continue-form', 'none');
+  }
 }
 
-function register() {
-    const nameEl = document.querySelector("#reg_name");
-    const passwordEl = document.querySelector("#reg_password");
-    const emailEl = document.querySelector("#reg_email");
-    localStorage.setItem("userName", nameEl.value);
-    localStorage.setItem("userPassword", passwordEl.value);
-    localStorage.setItem("userEmail", emailEl.value);
+// (async () => {
+//   const userName = localStorage.getItem('userName');
+//   if (userName) {
+//     //document.querySelector('#userName').textContent = userName;
+//     setDisplay('login/register', 'none');
+//     setDisplay('continueControls', 'block');
+//   } else {
+//     setDisplay('login/register', 'block');
+//     setDisplay('continueControls', 'none');
+//   }
+// })();
+
+async function login() {
+  const userName = document.querySelector("#name")?.value;
+  const password = document.querySelector("#password")?.value;
+  const response = await fetch('/api/auth/login', {
+    method: 'post',
+    body: JSON.stringify({username: userName, password: password}),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+
+  if (response.ok) {
+    localStorage.setItem("userName", userName);
     window.location.href = "recipes.html";
+  } else {
+    const body = await response.json();
+    alert(`⚠ Error: ${body.msg}`);
+  }
+}
+
+async function register() {
+  const username = document.querySelector("#reg_name")?.value;
+  const password = document.querySelector("#reg_password")?.value;
+  const email = document.querySelector("#reg_email")?.value;
+  const response = await fetch('/api/auth/create', {
+    method: 'post',
+    body: JSON.stringify({username: username, email: email, password: password}),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+ });
+
+  if (response.ok) {
+    localStorage.setItem("userName", username);
+    window.location.href = "recipes.html";
+  } else {
+    const body = await response.json();
+    alert(`⚠ Error: ${body.msg}`);
+  }
+}
+
+function continueLogin() {
+  window.location.href = "recipes.html";
+}
+
+function logout() {
+  localStorage.removeItem('userName');
+  fetch(`/api/auth/logout`, {
+    method: 'delete',
+  }).then(() => (window.location.href = '/'));
+}
+
+async function getUser(email) {
+  // See if we have a user with the given email.
+  const response = await fetch(`/api/user/${email}`);
+  if (response.status === 200) {
+    return response.json();
+  }
+
+  return null;
+}
+
+function setDisplay(controlId, display) {
+  const playControlEl = document.getElementById(controlId);
+  if (playControlEl) {
+    playControlEl.style.display = display;
+  }
 }
 
 function myAnimate() {
-    $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+    //$('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+    $('#register').animate({ height: "toggle", opacity: "toggle" }, "slow");
+    $('#login').animate({ height: "toggle", opacity: "toggle" }, "slow");
+
 }
-
-//to test the database connection
-const { MongoClient } = require('mongodb');
-const config = require('./dbConfig.json');
-
-const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-const client = new MongoClient(url);
-const db = client.db('rental');
-
-(async function testConnection() {
-  await client.connect();
-  await db.command({ ping: 1 });
-})().catch((ex) => {
-  console.log(`Unable to connect to database with ${url} because ${ex.message}`);
-  process.exit(1);
-});
-
-testConnection();

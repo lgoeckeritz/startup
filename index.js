@@ -30,20 +30,24 @@ apiRouter.post('/auth/create', async (req, res) => {
   if (await DB.getUser(req.body.email)) {
     res.status(409).send({ msg: 'Existing user' });
   } else {
-    const user = await DB.createUser(req.body.name, req.body.email, req.body.password);
+    if (await DB.getUser(req.body.username)) {
+      res.status(409).send({ msg: 'Username already taken' });
+    } else {
+      const user = await DB.createUser(req.body.username, req.body.email, req.body.password);
 
-    // Set the cookie
-    setAuthCookie(res, user.token);
+      // Set the cookie
+      setAuthCookie(res, user.token);
 
-    res.send({
-      id: user._id,
-    });
+      res.send({
+        id: user._id,
+      });
+    }
   }
 });
 
 // GetAuth token for the provided credentials
 apiRouter.post('/auth/login', async (req, res) => {
-  const user = await DB.getUser(req.body.email);
+  const user = await DB.getUser(req.body.username);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       setAuthCookie(res, user.token);
