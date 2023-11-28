@@ -3,6 +3,13 @@
   + To deploy something to my server: `./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon`
   + IP address of server: 34.206.34.136
 
+# Notes for Final
+
+### Websocket
+- [WebSocket](https://github.com/webprogramming260/.github/blob/main/profile/webServices/webSocket/webSocket.md)
+- [Debugging WebSocket](https://github.com/webprogramming260/.github/blob/main/profile/webServices/webSocket/debugging.md)
+- [WebSocket chat](https://github.com/webprogramming260/.github/blob/main/profile/webServices/webSocket/chat.md)
+
 # Notes for Midterm
 
 ### References to other helpful notes
