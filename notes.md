@@ -11,7 +11,6 @@
 - [WebSocket chat](https://github.com/webprogramming260/.github/blob/main/profile/webServices/webSocket/chat.md)
 
 # Final Study Guide
-
 1. What ports are used for HTTP, HTTPS, SSH?
 2. What do HTTP status codes in the 300, 400, 500 range indicate?
 3. What does the HTTP header content-type allows you to do?
