@@ -15,16 +15,17 @@
 2. What do HTTP status codes in the 300, 400, 500 range indicate?
 3. What does the HTTP header content-type allows you to do?
 4. What do the following attributes of a cookie do?
-  - Domain
-  - Path
-  - SameSite
-  - HTTPOnly
+    - Domain
+    - Path
+    - SameSite
+    - HTTPOnly
 5. Assuming the following Express middleware, what would be the console.log output for an HTTP GET request with a URL path of /foo/bar?
 6. Given the following Express service code: What does the following JavaScript fetch return?
 7. Given the following MongoDB query
 
-`{ cost: { $gt: 10 }, name: /fran.*/}`
-select all of the matching documents.
+        { cost: { $gt: 10 }, name: /fran.*/}
+    
+    select all of the matching documents.
 
 8. How should you store user passwords in a database?
 9. Assuming the following Node.js service code is executing with websockets, what will be logged to the console of the web browser?
@@ -34,28 +35,28 @@ select all of the matching documents.
 
         <div id="root"></div>
 
-element, what content will the following React component generate?
+    element, what content will the following React component generate?
 
-      function Welcome(props) {
-        return <h1>Hello, {props.name}</h1>;
-      }
-      function App() {
-        return (
-          <div>
-            <Welcome name="Sara" />
-            <Welcome name="Cahal" />
-            <Welcome name="Edite" />
-          </div>
-        );
-      }
-      const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render(<App />);
+        function Welcome(props) {
+          return <h1>Hello, {props.name}</h1>;
+        }
+        function App() {
+          return (
+            <div>
+              <Welcome name="Sara" />
+              <Welcome name="Cahal" />
+              <Welcome name="Edite" />
+            </div>
+          );
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
       
 13. Assuming a HTML document with a 
 
         <div id="root"></div>
         
-element, what content will the following React component generate?
+    element, what content will the following React component generate?
 
         function Numbers() { 
           const numbers = [1, 2, 3, 4, 5];
