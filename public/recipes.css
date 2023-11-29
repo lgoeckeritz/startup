@@ -238,17 +238,33 @@ button:hover,
   background: white;
 }
 
+/* for notification pop up */
+#popup-container {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 1;
+  height: max-content;
+}
+
+#popup-content {
+  text-align: center;
+}
+
+.noMargin {
+  margin: 0%;
+}
+
 @media (max-width: 500px) {
   .recipe-row {
     flex-direction: column; /* Switch to a vertical layout on smaller screens */
     align-items: center; /* Center items vertically */
     padding-left: 0em;
   }
-
-  /* .card {
-    width: 100%; 
-    margin-bottom: 20px;
-  } */
 
   .card {
   width: 100%;

@@ -2,6 +2,7 @@ class MainPage {
     recipeList;
     userName;
     currPage;
+    socket;
 
     constructor() {
         this.userName = localStorage.getItem('userName');
@@ -11,6 +12,7 @@ class MainPage {
         this.currPage = localStorage.getItem('currPage') ? parseInt(localStorage.getItem('currPage')) : 0; // Retrieve currPage from localStorage
 
         this.loadRecipes();
+        this.configureWebSocket();
     }
 
     getRandomUser() {
@@ -52,7 +54,6 @@ class MainPage {
 
             if (arrayIndex < this.recipeList.length) {
 
-                //article.style.display = 'block';
                 article.hidden = false;
 
                 const titleId = "title" + i;
@@ -63,8 +64,11 @@ class MainPage {
                 document.getElementById(authorId).textContent = this.recipeList[arrayIndex].author;
                 document.getElementById(timeId).textContent = this.recipeList[arrayIndex].cookTime;
 
-                article.addEventListener('click', () => {
+                article.addEventListener('click', () => { 
                     localStorage.setItem('clickedCardIndex', arrayIndex);
+                    //lets other users know when people are viewing recipes
+                    const title = this.recipeList[arrayIndex].title;
+                    this.broadcastEvent(this.userName, title);
                 });
 
             } 
@@ -72,15 +76,11 @@ class MainPage {
                 // Hide the card using the article ID
                 article.hidden = true;
             }
-
         }
-
-
-
     }
 
-     // Function to handle "Prev" button click
-     handlePrevButtonClick() {
+    // Function to handle "Prev" button click
+    handlePrevButtonClick() {
         if (this.currPage > 0) {
             this.currPage--;
             localStorage.setItem('currPage', this.currPage);
@@ -97,6 +97,36 @@ class MainPage {
             this.setRecipeCards();
         }
     }
+
+    configureWebSocket() {
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        this.socket.onmessage = async (event) => { 
+          const msg = JSON.parse(await event.data.text());
+          this.displayMsg(msg.from, msg.value);
+        };
+    }
+
+    displayMsg(from, msg) { 
+        const popupContainer = document.getElementById('popup-container');
+        const popupContent = document.getElementById('popup-content');
+
+        popupContent.innerHTML = `<p class="noMargin">${from} viewed ${msg}</p>`;
+        popupContainer.style.display = 'block'
+
+        setTimeout(() => {
+            popupContainer.style.display = 'none';
+        }, 5000); // 5000 milliseconds (5 seconds)
+    }
+
+    broadcastEvent(from, value) { 
+        const event = {
+          from: from,
+          value: value,
+        };
+        this.socket.send(JSON.stringify(event));
+    }
+
 }
 
 
