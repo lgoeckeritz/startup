@@ -103,8 +103,14 @@ For this deliverable, I associate the recipes created with the logged-in user.
 - **Use MongoDB to store credentials** - Stores both user and their recipes.
 - **Restricts functionality** - You cannot view or create recipes until you have logged in.
 
+## WebSocket deliverable
 
+For this deliverable, I used webSocket to let other users see what recipes are being viewed in real time.
 
+- **Backend listens for WebSocket connection** - done!
+- **Frontend makes WebSocket connection** - done!
+- **Data sent over WebSocket connection** - done!
+- **WebSocket data displayed** - Every time a user views a recipe, all other users are notified.
 
 
 
