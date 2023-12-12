@@ -1,23 +1,5 @@
 {
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "cookie-parser": "^1.4.6",
-    "express": "^4.18.2",
-    "mongodb": "^6.2.0",
-    "uuid": "^9.0.1",
-    "ws": "^8.14.2"
-  },
   "devDependencies": {
-    "@playwright/test": "^1.39.0",
-    "@types/node": "^20.8.10",
-    "supertest": "^6.3.3"
-  },
-  "scripts": {},
-  "name": "startup",
-  "description": "What is the best thing to unite a family? Cooking up a good meal and sharing it with everyone. How can we unite a family spread across the country? Cooking up a good meal and sharing the recipe with everyone! My wife, Liz, is an amazing cook. She comes from a family of amazing cooks and she is constantly asking for recipes from various family members to compile into her own personal cookbook. Liz's Recipes makes it so easy for our family to upload our favorite recipes and have them instantly accessible to anyone in the family! Now there's no longer the risk of losing cherished recipes and everyone can share a meal with each other no matter how far away they are!",
-  "version": "1.0.0",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "vite": "^5.0.8"
+  }
 }

@@ -1,151 +1,106 @@
-const cookieParser = require('cookie-parser');
-const bcrypt = require('bcrypt');
-const express = require('express');
-const app = express();
-const DB = require('./database.js');
-const { peerProxy } = require('./peerProxy.js');
-
-const authCookieName = 'token';
-
-// The service port. In production the frontend code is statically hosted by the service on the same port.
-const port = process.argv.length > 2 ? process.argv[2] : 4000;
-
-// JSON body parsing using built-in middleware
-app.use(express.json());
-
-// Use the cookie parser middleware for tracking authentication tokens
-app.use(cookieParser());
-
-// Serve up the frontend static content hosting
-app.use(express.static('public'));
-
-// Trust headers that are forwarded from the proxy so we can determine IP addresses
-app.set('trust proxy', true);
-
-// Router for service endpoints
-const apiRouter = express.Router();
-app.use(`/api`, apiRouter);
-
-// CreateAuth token for a new user
-apiRouter.post('/auth/create', async (req, res) => {
-  if (await DB.getUser(req.body.email)) {
-    res.status(409).send({ msg: 'Existing user' });
+window.onload = async function() {
+  const userName = localStorage.getItem('userName');
+  if (userName) {
+    document.getElementById('userName').textContent = userName;
+    setDisplay('login/register', 'none');
+    setDisplay('continue-form', 'block');
   } else {
-    if (await DB.getUser(req.body.username)) {
-      res.status(409).send({ msg: 'Username already taken' });
-    } else {
-      const user = await DB.createUser(req.body.username, req.body.email, req.body.password);
-
-      // Set the cookie
-      setAuthCookie(res, user.token);
-
-      res.send({
-        id: user._id,
-      });
-    }
+    setDisplay('login/register', 'block');
+    setDisplay('continue-form', 'none');
   }
-});
-
-// GetAuth token for the provided credentials
-apiRouter.post('/auth/login', async (req, res) => {
-  const user = await DB.getUser(req.body.username);
-  if (user) {
-    if (await bcrypt.compare(req.body.password, user.password)) {
-      setAuthCookie(res, user.token);
-      res.send({ id: user._id });
-      return;
-    }
-  }
-  res.status(401).send({ msg: 'Unauthorized' });
-});
-
-// DeleteAuth token if stored in cookie
-apiRouter.delete('/auth/logout', (_req, res) => {
-  res.clearCookie(authCookieName);
-  res.status(204).end();
-});
-
-// GetUser returns information about a user
-apiRouter.get('/user/:email', async (req, res) => {
-  const user = await DB.getUser(req.params.email);
-  if (user) {
-    const token = req?.cookies.token;
-    res.send({ email: user.email, authenticated: token === user.token });
-    return;
-  }
-  res.status(404).send({ msg: 'Unknown' });
-});
-
-// secureApiRouter verifies credentials for endpoints
-var secureApiRouter = express.Router();
-apiRouter.use(secureApiRouter);
-
-secureApiRouter.use(async (req, res, next) => {
-  authToken = req.cookies[authCookieName];
-  const user = await DB.getUserByToken(authToken);
-  if (user) {
-    next();
-  } else {
-    res.status(401).send({ msg: 'Unauthorized' });
-  }
-});
-
-// GetRecipes
-apiRouter.get('/recipes', async (_req, res) => {
-  const recipes = await DB.getRecipes();
-  res.send(recipes);
-});
-
-// SubmitRecipe
-apiRouter.post('/recipe', async (req, res) => {
-  DB.addRecipe(req.body);
-  const recipes = await DB.getRecipes();
-  res.send(recipes);
-});
-
-// Default error handler
-app.use(function (err, req, res, next) {
-  res.status(500).send({ type: err.name, message: err.message });
-});
-
-// Return the application's default page if the path is unknown
-app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});
-
-// setAuthCookie in the HTTP response
-function setAuthCookie(res, authToken) {
-  res.cookie(authCookieName, authToken, {
-    secure: true,
-    httpOnly: true,
-    sameSite: 'strict',
-  });
 }
 
-const httpService = app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
-
-peerProxy(httpService);
-
-// no longer using now that DB is implimented
-
-// // updateRecipes considers a new recipes for inclusion in the recipes.
-// // The recipes are saved in memory and disappear whenever the service is restarted.
-// let recipes = [];
-// function updateRecipes(newRecipe, recipes) {
-//   let found = false;
-//   //checking to make sure that this added recipe doesn't already exist
-//   for (const [i, prevRecipe] of recipes.entries()) {
-//     if (newRecipe == prevRecipe) {
-//       found = true;
-//       break;
-//     }
+// (async () => {
+//   const userName = localStorage.getItem('userName');
+//   if (userName) {
+//     //document.querySelector('#userName').textContent = userName;
+//     setDisplay('login/register', 'none');
+//     setDisplay('continueControls', 'block');
+//   } else {
+//     setDisplay('login/register', 'block');
+//     setDisplay('continueControls', 'none');
 //   }
+// })();
 
-//   if (!found) {
-//     recipes.push(newRecipe);
-//   }
+async function login() {
+  const userName = document.querySelector("#name")?.value;
+  const password = document.querySelector("#password")?.value;
+  const response = await fetch('/api/auth/login', {
+    method: 'post',
+    body: JSON.stringify({username: userName, password: password}),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
 
-//   return recipes;
-// }
+  if (response.ok) {
+    localStorage.setItem("userName", userName);
+    window.location.href = "recipes.html";
+  } else {
+    const body = await response.json();
+    alert(`⚠ Error: ${body.msg}`);
+  }
+}
+
+async function register() {
+  const username = document.querySelector("#reg_name")?.value;
+  const password = document.querySelector("#reg_password")?.value;
+  const email = document.querySelector("#reg_email")?.value;
+
+  if (username == "" || password == "" || email == "") {
+    alert(`⚠ Error: One or multiple fields are empty`);
+    return;
+  }
+
+
+  const response = await fetch('/api/auth/create', {
+    method: 'post',
+    body: JSON.stringify({username: username, email: email, password: password}),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+ });
+
+  if (response.ok) {
+    localStorage.setItem("userName", username);
+    window.location.href = "recipes.html";
+  } else {
+    const body = await response.json();
+    alert(`⚠ Error: ${body.msg}`);
+  }
+}
+
+function continueLogin() {
+  window.location.href = "recipes.html";
+}
+
+function logout() {
+  localStorage.removeItem('userName');
+  fetch(`/api/auth/logout`, {
+    method: 'delete',
+  }).then(() => (window.location.href = '/'));
+}
+
+async function getUser(email) {
+  // See if we have a user with the given email.
+  const response = await fetch(`/api/user/${email}`);
+  if (response.status === 200) {
+    return response.json();
+  }
+
+  return null;
+}
+
+function setDisplay(controlId, display) {
+  const playControlEl = document.getElementById(controlId);
+  if (playControlEl) {
+    playControlEl.style.display = display;
+  }
+}
+
+function myAnimate() {
+    //$('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+    $('#register').animate({ height: "toggle", opacity: "toggle" }, "slow");
+    $('#login').animate({ height: "toggle", opacity: "toggle" }, "slow");
+
+}
