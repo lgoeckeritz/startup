@@ -1,5 +1,6 @@
 import React from 'react';
 import './login.css'
+import { useNavigate } from 'react-router';
 
 export function Unauthenticated(props) {
 
@@ -7,6 +8,8 @@ export function Unauthenticated(props) {
     const [password, setPassword] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [isRegisterVisible, setIsRegisterVisible] = React.useState(false);
+
+    const navigate = useNavigate();
 
     async function login() {
         const response = await fetch('/api/auth/login', {
@@ -18,7 +21,7 @@ export function Unauthenticated(props) {
         });
         if (response.ok) {
             localStorage.setItem("userName", userName);
-            props.onLogin(userName);
+            navigate('/recipes')
         } else {
             const body = await response.json();
             alert(`⚠ Error: ${body.msg}`);
@@ -63,7 +66,7 @@ export function Unauthenticated(props) {
                     <input type="text" id="reg_name" placeholder="username" onChange={(e) => setUserName(e.target.value)}/>
                     <input type="password" id="reg_password" placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
                     <input type="text" id="reg_email" placeholder="email address" onChange={(e) => setEmail(e.target.value)}/>
-                    <button className="btn btn-primary" type="reset" onclick={() => register()}>
+                    <button className="btn btn-primary" type="reset" onClick={() => register()}>
                         create
                     </button>
                     <p className="message">Already registered? {' '}
@@ -77,7 +80,7 @@ export function Unauthenticated(props) {
                 <form className="login-form" id="login">
                     <input type="text" id="name" placeholder="username" onChange={(e) => setUserName(e.target.value)}/>
                     <input type="password" id="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
-                    <button className="btn btn-primary" type="reset" onclick={() => login()}>
+                    <button className="btn btn-primary" type="reset" onClick={() => login()}>
                         login
                     </button>
                     <p className="message">
