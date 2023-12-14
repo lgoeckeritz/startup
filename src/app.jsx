@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
-import { recipePage } from './recipePage/recipePage';
+import { RecipePage } from './recipePage/recipePage';
 import { Recipes } from './recipes/mainPage';
 import { Upload } from './upload/upload';
 import { AuthState } from './login/authState';
@@ -12,7 +12,8 @@ function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
     const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
     const [authState, setAuthState] = React.useState(currentAuthState);
-    const [currPage, setCurrPage] = React.useState(localStorage.getItem('currPage') ? parseInt(localStorage.getItem('currPage')) : 0); //not positive this will work
+    const [currPage, setCurrPage] = React.useState(localStorage.getItem('currPage') ? parseInt(localStorage.getItem('currPage')) : 0);
+    const [currRecipe, setRecipe] = React.useState('null');
 
     return(
         <BrowserRouter>
@@ -37,11 +38,14 @@ function App() {
                         <Recipes
                             userName={userName}
                             currPage={currPage} 
+                            onRecipeSelect={(recipe) => {
+                                setRecipe(recipe);
+                            }}
                         />
                     } 
                 />
-                <Route path='/recipePage' element={<recipePage />} />
-                <Route path='/upload' element={<Upload />} />
+                <Route path='/recipePage' element={<RecipePage recipe={currRecipe}/>} />
+                <Route path='/upload' element={<Upload author={userName}/>} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
         </BrowserRouter>

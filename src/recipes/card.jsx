@@ -9,7 +9,7 @@ export function Card(props) {
 
 
     return (
-        <article className="card card--1" onClick={() => props.click(title, props.index)}>
+        <article className="card card--1" onClick={() => props.click(title, props.index, props.recipe)}>
             <div className="card__info-hover">
                 <div className="card__clock-info">
                 <svg className="card__clock" viewBox="0 0 24 24">
@@ -21,9 +21,7 @@ export function Card(props) {
                 </div>
             </div>
             <div className="card__img" />
-            {/* might get rid of this href and instead use a function */}
-            {/* changing link to # for now */}
-            <a href="#" className="card_link">
+            <a className="card_link">
                 <div className="card__img--hover" />
             </a>
             <div className="card__info">

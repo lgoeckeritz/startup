@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
+
+body {
+  font-family: "Roboto Slab", serif;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* 100% of the viewport height */
+}
+
+.recipe {
+  flex: 2; /* Takes up 3/4 of the available space */
+  padding: 20px; /* Add padding for spacing */
+  background-color: #f9f9f9; 
+  overflow-y: auto; /* Add scroll if the content exceeds the container height */
+}
+
+img {
+  width: 100px;
+  flex: 1; /* Takes up 1/4 of the available space */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  max-height: 100%; /* Ensure the image does not exceed the container height */
+}
+
+h1 {
+  font-family: "Sacramento", cursive;
+  align-items: center;
+  color: #b76e79;
+  font-size: 50px;
+  justify-content: center;
+  flex-direction: row;
+  display: flex;
+  flex: 0 50px;
+  text-align: center;
+}
+
+table {
+  width: 100%; /* Use 100% width to fill the container */
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+h4 {
+  color: #b76e79;
+  font-size: 20px;
+  text-align: center;
+}
+
+.instructions_table tr {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
+p {
+  color: #d69762;
+  font: italic 30px/1 "Playfair Display", serif;
+}
+
+a {
+  color: #d69762;
+  font: italic 18px/1 "Playfair Display", serif;
+  padding-bottom: 1em;
+}
+

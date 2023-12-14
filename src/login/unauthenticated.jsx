@@ -72,7 +72,7 @@ export function Unauthenticated(props) {
                         create
                     </button>
                     <p className="message">Already registered? {' '}
-                        <a href="#" onClick={() => toggleRegister(false)}>
+                        <a onClick={() => toggleRegister(false)}>
                             Sign In
                         </a>
                     </p>
@@ -87,7 +87,7 @@ export function Unauthenticated(props) {
                     </button>
                     <p className="message">
                         Not registered? {' '}
-                        <a href="#" onClick={() => toggleRegister(true)}>
+                        <a onClick={() => toggleRegister(true)}>
                             Create an account
                         </a>
                     </p>

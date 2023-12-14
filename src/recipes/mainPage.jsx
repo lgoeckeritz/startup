@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Recipe } from './recipe';
+import { Recipe } from '../upload/recipe';
 import { PopUps } from './popUps';
 import { notifier } from './notifier';
 import { Card } from './card';
@@ -7,6 +7,7 @@ import './recipes.css'
 import { useNavigate } from 'react-router';
 
 export function Recipes(props) {
+
     const userName = props.userName;
     let currPage = props.currPage;
     const [recipeList, setRecipeList] = React.useState(localStorage.getItem('recipeList') || []);
@@ -34,17 +35,19 @@ export function Recipes(props) {
         }
     }
 
-    //todo: when something happens that we want to broadcast just do:
-    // notifier.broadcastEvent(stuff);
-    // maybe attach it to a useEffect?
-    // actually, just pass in a onClick function hand have it call the notifier
-    function recipeClick(title, index) {
+    function recipeClick(title, index, recipe) {
         notifier.broadcastEvent(userName, title);
         localStorage.setItem('clickedCardIndex', index);
+        props.onRecipeSelect(recipe);
         navigate('/recipePage');
     }
 
-    // todo: I think it would work best if the websocket was in here?
+    //might not need this
+    function createRecipe() {
+        //may need a way to save whatever recipe is created to have it update correctly, idk
+        navigate('/upload');
+    }
+    
 
     return (
         <>
@@ -53,8 +56,8 @@ export function Recipes(props) {
                     <PopUps msg={displayMsg} onTimeOut={() => setDisplay('none')} />
                 )}
                 {/* TODO: see if this needs to be a function instead of a href */}
-                <a href="upload.html">
-                    <button type="button">Add a Recipe</button>
+                <a>
+                    <button onClick={() => navigate('/upload')} type="button">Add a Recipe</button>
                 </a>
             </header>
             <main>
