@@ -21,6 +21,7 @@ export function Unauthenticated(props) {
         });
         if (response.ok) {
             localStorage.setItem("userName", userName);
+            props.onLogin(userName);
             navigate('/recipes')
         } else {
             const body = await response.json();
@@ -44,6 +45,7 @@ export function Unauthenticated(props) {
         if (response.ok) {
             localStorage.setItem("userName", username);
             props.onLogin(userName);
+            navigate('/recipes')
         } else {
             const body = await response.json();
             alert(`⚠ Error: ${body.msg}`);

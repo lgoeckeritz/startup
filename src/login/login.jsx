@@ -8,7 +8,7 @@ import { AuthState } from './authState';
 export function Login({userName, authState, onAuthChange}) {
 
     return (
-        <body>
+        <>
             <header>
                 <h1>Liz's Recipes</h1>
             </header>
@@ -25,6 +25,6 @@ export function Login({userName, authState, onAuthChange}) {
                     />
                 )}
             </main>
-        </body>
+        </>
     );
 }
