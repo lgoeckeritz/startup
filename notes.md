@@ -5,10 +5,37 @@
 
 # Notes for Final
 
+### Web Services
+- [Web Services Introduction](https://github.com/webprogramming260/.github/blob/main/profile/webServices/introduction/introduction.md)
+- [URL](https://github.com/webprogramming260/.github/blob/main/profile/webServices/url/url.md)
+- [Ports](https://github.com/webprogramming260/.github/blob/main/profile/webServices/ports/ports.md)
+- [HTTP](https://github.com/webprogramming260/.github/blob/main/profile/webServices/http/http.md)
+- [SOP and CORS](https://github.com/webprogramming260/.github/blob/main/profile/webServices/cors/cors.md)
+- [Service design](https://github.com/webprogramming260/.github/blob/main/profile/webServices/design/design.md)
+- [Node.js](https://github.com/webprogramming260/.github/blob/main/profile/webServices/node/node.md)
+- [Debugging Node.js](https://github.com/webprogramming260/.github/blob/main/profile/webServices/debuggingNode/debuggingNode.md)
+- [Service daemons - PM2](https://github.com/webprogramming260/.github/blob/main/profile/webServices/pm2/pm2.md)
+- [UI testing](https://github.com/webprogramming260/.github/blob/main/profile/webServices/uiTesting/uiTesting.md)
+- [Endpoint testing](https://github.com/webprogramming260/.github/blob/main/profile/webServices/endpointTesting/endpointTesting.md)
+
+### Database
+- [Storage Services](https://github.com/webprogramming260/.github/blob/main/profile/webServices/storageServices/storageServices.md)
+- [Authorization services](https://github.com/webprogramming260/.github/blob/main/profile/webServices/authorizationServices/authorizationServices.md)
+- [Account creation and login](https://github.com/webprogramming260/.github/blob/main/profile/webServices/login/login.md)
+
 ### Websocket
 - [WebSocket](https://github.com/webprogramming260/.github/blob/main/profile/webServices/webSocket/webSocket.md)
 - [Debugging WebSocket](https://github.com/webprogramming260/.github/blob/main/profile/webServices/webSocket/debugging.md)
 - [WebSocket chat](https://github.com/webprogramming260/.github/blob/main/profile/webServices/webSocket/chat.md)
+
+### Web Frameworks
+- [Web Frameworks Introduction](https://github.com/webprogramming260/.github/blob/main/profile/webFrameworks/introduction/introduction.md)
+- [React](https://github.com/webprogramming260/.github/blob/main/profile/webFrameworks/react/introduction/introduction.md)
+- [React components](https://github.com/webprogramming260/.github/blob/main/profile/webFrameworks/react/components/components.md)
+- [Toolchains](https://github.com/webprogramming260/.github/blob/main/profile/webFrameworks/react/toolChains/toolChains.md)
+- [React reactivity](https://github.com/webprogramming260/.github/blob/main/profile/webFrameworks/react/reactivity/reactivity.md)
+- [Hooks](https://github.com/webprogramming260/.github/blob/main/profile/webFrameworks/react/hooks/hooks.md)
+- [Vite](https://github.com/webprogramming260/.github/blob/main/profile/webFrameworks/react/vite/vite.md)
 
 # Final Study Guide
 1. What ports are used for HTTP, HTTPS, SSH?

@@ -112,7 +112,14 @@ For this deliverable, I used webSocket to let other users see what recipes are b
 - **Data sent over WebSocket connection** - done!
 - **WebSocket data displayed** - Every time a user views a recipe, all other users are notified.
 
+## React deliverable
 
+For this deliverable, I converted the application over to use React.
+
+- **Bundled and transpiled** - done!
+- **Components** - Login, RecipePage, Recipies, and Upload are all components.
+- **Router** - All redirects have been converted to use Routers.
+- **Hooks** - Hooks keep track of the state of all my variables used to update the webpage.
 
 
 
