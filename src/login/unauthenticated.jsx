@@ -22,7 +22,7 @@ export function Unauthenticated(props) {
         if (response.ok) {
             localStorage.setItem("userName", userName);
             props.onLogin(userName);
-            navigate('/recipes')
+            navigate('/recipes');
         } else {
             const body = await response.json();
             alert(`⚠ Error: ${body.msg}`);
@@ -37,15 +37,15 @@ export function Unauthenticated(props) {
       
         const response = await fetch('/api/auth/create', {
             method: 'post',
-            body: JSON.stringify({username: username, email: email, password: password}),
+            body: JSON.stringify({username: userName, email: email, password: password}),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
        });
         if (response.ok) {
-            localStorage.setItem("userName", username);
+            localStorage.setItem("userName", userName);
             props.onLogin(userName);
-            navigate('/recipes')
+            navigate('/recipes');
         } else {
             const body = await response.json();
             alert(`⚠ Error: ${body.msg}`);
