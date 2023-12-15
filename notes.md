@@ -13,6 +13,7 @@
 - [SOP and CORS](https://github.com/webprogramming260/.github/blob/main/profile/webServices/cors/cors.md)
 - [Service design](https://github.com/webprogramming260/.github/blob/main/profile/webServices/design/design.md)
 - [Node.js](https://github.com/webprogramming260/.github/blob/main/profile/webServices/node/node.md)
+- [Express](https://github.com/webprogramming260/.github/blob/a4844b19515d47db5f21cde406481e3e4d76ccb8/profile/webServices/express/express.md#L1)
 - [Debugging Node.js](https://github.com/webprogramming260/.github/blob/main/profile/webServices/debuggingNode/debuggingNode.md)
 - [Service daemons - PM2](https://github.com/webprogramming260/.github/blob/main/profile/webServices/pm2/pm2.md)
 - [UI testing](https://github.com/webprogramming260/.github/blob/main/profile/webServices/uiTesting/uiTesting.md)
@@ -46,14 +47,14 @@
     - *500: Server error responses*
 3. What does the HTTP header content-type allows you to do?
     - *Specifies the media type of the resource*
-4. What do the following attributes of a cookie do?
+4. What do the following attributes of a [cookie](#Cookies) do?
     - Domain *Specifies the domain for the cookie*
     - Path *Restricts the path where the cookie is sent*
     - SameSite *Controls cross-site request forgery (CSRF) attacks*
     - HTTPOnly *Prevents access to cookie via JavaScript*
-5. Assuming the following Express middleware, what would be the console.log output for an HTTP GET request with a URL path of /foo/bar?
+5. Assuming the following [Express](https://github.com/webprogramming260/.github/blob/a4844b19515d47db5f21cde406481e3e4d76ccb8/profile/webServices/express/express.md#L1) middleware, what would be the console.log output for an HTTP GET request with a URL path of /foo/bar?
 6. Given the following Express service code: What does the following JavaScript fetch return?
-7. Given the following MongoDB query
+7. Given the following [MongoDB](#MongoDB) query
 
         { cost: { $gt: 10 }, name: /fran.*/}
     
@@ -165,6 +166,101 @@
     - *Node.js is a JavaScript runtime environment that allows you to run JavaScript on the server side. It’s built on Chrome’s V8 JavaScript engine and enables building scalable network applications.*
 22. What does Vite do?
     - *Vite is a modern frontend build tool that offers a faster and leaner development experience. It provides features like instant server start and hot module replacement by leveraging modern web technologies.*
+   
+# HTTP
+## Status codes
+
+It is important that you use the standard HTTP status codes in your HTTP responses so that the client of a request can know how to interpret the response. The codes are partitioned into five blocks.
+
+- 1xx - Informational.
+- 2xx - Success.
+- 3xx - Redirect to some other location, or that the previously cached resource is still valid.
+- 4xx - Client errors. The request is invalid.
+- 5xx - Server errors. The request cannot be satisfied due to an error on the server.
+
+Within those ranges here are some of the more common codes. See the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) for a full description of status codes.
+
+| Code | Text                                                                                 | Meaning                                                                                                                           |
+| ---- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| 100  | Continue                                                                             | The service is working on the request                                                                                             |
+| 200  | Success                                                                              | The requested resource was found and returned as appropriate.                                                                     |
+| 201  | Created                                                                              | The request was successful and a new resource was created.                                                                        |
+| 204  | No Content                                                                           | The request was successful but no resource is returned.                                                                           |
+| 304  | Not Modified                                                                         | The cached version of the resource is still valid.                                                                                |
+| 307  | Permanent redirect                                                                   | The resource is no longer at the requested location. The new location is specified in the response location header.               |
+| 308  | Temporary redirect                                                                   | The resource is temporarily located at a different location. The temporary location is specified in the response location header. |
+| 400  | Bad request                                                                          | The request was malformed or invalid.                                                                                             |
+| 401  | Unauthorized                                                                         | The request did not provide a valid authentication token.                                                                         |
+| 403  | Forbidden                                                                            | The provided authentication token is not authorized for the resource.                                                             |
+| 404  | Not found                                                                            | An unknown resource was requested.                                                                                                |
+| 408  | Request timeout                                                                      | The request takes too long.                                                                                                       |
+| 409  | Conflict                                                                             | The provided resource represents an out of date version of the resource.                                                          |
+| 418  | [I'm a teapot](https://en.wikipedia.org/wiki/Hyper_Text_Coffee_Pot_Control_Protocol) | The service refuses to brew coffee in a teapot.                                                                                   |
+| 429  | Too many requests                                                                    | The client is making too many requests in too short of a time period.                                                             |
+| 500  | Internal server error                                                                | The server failed to properly process the request.                                                                                |
+| 503  | Service unavailable                                                                  | The server is temporarily down. The client should try again with an exponential back off.                                         |
+
+## Cookies
+
+📖 **Deeper dive reading**: [MDN Using HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
+
+HTTP itself is stateless. This means that one HTTP request does not know anything about a previous or future request. However, that does not mean that a server or client cannot track state across requests. One common method for tracking state is the `cookie`. Cookies are generated by a server and passed to the client as an HTTP header.
+
+```http
+HTTP/2 200
+Set-Cookie: myAppCookie=tasty; SameSite=Strict; Secure; HttpOnly
+```
+
+The client then caches the cookie and returns it as an HTTP header back to the server on subsequent requests.
+
+```http
+HTTP/2 200
+Cookie: myAppCookie=tasty
+```
+
+This allows the server to remember things like the language preference of the user, or the user's authentication credentials. A server can also use cookies to track, and share, everything that a user does. However, there is nothing inherently evil about cookies; the problem comes from web applications that use them as a means to violate a user's privacy or inappropriately monetize their data.
+
+## Passing authentication tokens
+
+We now need to pass our generated authentication token to the browser when the login endpoint is called, and get it back on subsequent requests. To do this we use HTTP cookies. The `cookie-parser` package provides middleware for cookies and so we will leverage that.
+
+We import the `cookieParser` object and then tell our app to use it. When a user is successfully created, or logs in, we set the cookie header. Since we are storing an authentication token in the cookie, we want to make it as secure as possible, and so we use the `httpOnly`, `secure`, and `sameSite` options.
+
+- `httpOnly` tells the browser to not allow JavaScript running on the browser to read the cookie.
+- `secure` requires HTTPS to be used when sending the cookie back to the server.
+- `sameSite` will only return the cookie to the domain that generated it.
+
+## MongoDB
+
+For the projects in this course that require data services, we will use `MongoDB`. Mongo increases developer productivity by using JSON objects as its core data model. This makes it easy to have an application that uses JSON from the top to the bottom of the technology stack. A mongo database is made up of one or more collections that each contain JSON documents. You can think of a collection as a large array of JavaScript objects, each with a unique ID. The following is a sample of a collection of houses that are for rent.
+
+Unlike relational databases that require a rigid table definition where each column must be strictly typed and defined beforehand, Mongo has no strict schema requirements. Each document in the collection usually follows a similar schema, but each document may have specialized fields that are present, and common fields that are missing. This allows the schema of a collection to morph organically as the data model of the application evolves. To add a new field to a Mongo collection you just insert the field into the documents as desired. If the field is not present, or has a different type in some documents, then the document simply doesn't match the query criteria when the field is referenced.
+
+The query syntax for Mongo also follow a JavaScript-inspired flavor. Consider the following queries on the houses for rent collection that was shown above.
+
+```js
+// find all houses
+db.house.find();
+
+// find houses with two or more bedrooms
+db.house.find({ beds: { $gte: 2 } });
+
+// find houses that are available with less than three beds
+db.house.find({ status: 'available', beds: { $lt: 3 } });
+
+// find houses with either less than three beds or less than $1000 a night
+db.house.find({ $or: [(beds: { $lt: 3 }), (price: { $lt: 1000 })] });
+
+// find houses with the text 'modern' or 'beach' in the summary
+db.house.find({ summary: /(modern|beach)/i });
+```
+
+
+
+
+
+
+
 
 # Notes for Midterm
 
