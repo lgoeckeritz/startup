@@ -39,13 +39,18 @@
 
 # Final Study Guide
 1. What ports are used for HTTP, HTTPS, SSH?
+    - *HTTP (80), HTTPS (443), SSH (22)*
 2. What do HTTP status codes in the 300, 400, 500 range indicate?
+    - *300: Redirection Messages*
+    - *400: Client error responses*
+    - *500: Server error responses*
 3. What does the HTTP header content-type allows you to do?
+    - *Specifies the media type of the resource*
 4. What do the following attributes of a cookie do?
-    - Domain
-    - Path
-    - SameSite
-    - HTTPOnly
+    - Domain *Specifies the domain for the cookie*
+    - Path *Restricts the path where the cookie is sent*
+    - SameSite *Controls cross-site request forgery (CSRF) attacks*
+    - HTTPOnly *Prevents access to cookie via JavaScript*
 5. Assuming the following Express middleware, what would be the console.log output for an HTTP GET request with a URL path of /foo/bar?
 6. Given the following Express service code: What does the following JavaScript fetch return?
 7. Given the following MongoDB query
@@ -53,11 +58,15 @@
         { cost: { $gt: 10 }, name: /fran.*/}
     
     select all of the matching documents.
+    - *Selects documents with `cost` greater than 10 and `name` starting with fran*
 
 8. How should you store user passwords in a database?
+    - *using a hashing of some sort to encrypt it*
 9. Assuming the following Node.js service code is executing with websockets, what will be logged to the console of the web browser?
 10. What is the WebSocket protocol used for?
+    - *Enables two-way communication between client and server.*
 11. What is JSX and how are the curly braces rendered?
+    - *JSX is a syntax extension for JavaScript, and curly braces insert JavaScript expressions into JSX.*
 12. Assuming a HTML document with a
 
         <div id="root"></div>
@@ -78,6 +87,13 @@
         }
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
+    - *Answer:*
+    
+`Hello, Sara`
+
+`Hello, Cahal`
+
+`Hello, Edite`
       
 13. Assuming a HTML document with a 
 
@@ -94,6 +110,12 @@
         }
         const root = ReactDOM.createRoot(document.getElementById('root')); 
         root.render(<Numbers/>);
+    *Answer:*
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
         
 14. What does the following React component do?
 
@@ -109,9 +131,11 @@
             </div>
           );
         }
-    
+    - *It renders a number and button that increments the number every time the button is clicked*
 15. What are React Hooks used for?
+    - *React Hooks are functions that let you “hook into” React state and lifecycle features from function components. They are used to manage state and side effects in function components without writing a class.*
 16. What is the useEffect hook used for?
+    - *This Hook lets you perform side effects in function components. It can be used for data fetching, subscriptions, or manually changing the DOM from React components.*
 17. What does this code do?
     
         export default function App() {
@@ -128,12 +152,19 @@
             </BrowserRouter>
           );
         }
-    
+    - *This setup allows for a single-page application (SPA) experience, where clicking on links changes the URL and renders new content without a full page refresh.*
+    - *The root path / renders the Layout component, which likely contains a common structure like a header or footer.*
+    - *The index route renders the Home component when the URL is exactly /*
 18. What role does npm play in web development?
+    - *npm, or Node Package Manager, is a tool that facilitates package management for JavaScript. It allows developers to install, share, and manage dependencies (libraries and tools) in their projects.*
 19. What does package.json do in a npm project?
+    - *This file is the heart of any Node.js project, containing metadata about the project. It lists the dependencies, scripts, version, and other important information needed for the project to run and be managed properly.*
 20. What does the fetch function do?
+    - *The `fetch` function is a modern browser API for making asynchronous HTTP requests in JavaScript. It’s used for network requests, such as calling APIs or loading resources.*
 21. What does node.js do?
+    - *Node.js is a JavaScript runtime environment that allows you to run JavaScript on the server side. It’s built on Chrome’s V8 JavaScript engine and enables building scalable network applications.*
 22. What does Vite do?
+    - *Vite is a modern frontend build tool that offers a faster and leaner development experience. It provides features like instant server start and hot module replacement by leveraging modern web technologies.*
 
 # Notes for Midterm
 
